@@ -106,7 +106,7 @@ export default function SpecialEpilogue() {
       gsap.set(".special-visualFrame", {
         opacity: 0,
         scale: 0.968,
-        filter: "blur(8px)",
+        filter: "blur(10px)",
       });
 
       gsap.set(".special-visualHalo", {
@@ -114,11 +114,29 @@ export default function SpecialEpilogue() {
         scale: 0.84,
       });
 
+      gsap.set(".special-visualRing", {
+        opacity: 0,
+        scale: 0.9,
+      });
+
       gsap.set(".special-heroLine", {
         scaleX: 0,
         transformOrigin: "left center",
         opacity: 0.5,
       });
+
+      gsap.set(
+        [
+          ".special-particlesBack",
+          ".special-particlesMid",
+          ".special-particlesFront",
+          ".special-aurora",
+          ".special-auroraTwo",
+        ],
+        {
+          opacity: 0,
+        }
+      );
 
       const introTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
@@ -131,7 +149,7 @@ export default function SpecialEpilogue() {
         .to(
           ".special-kicker",
           {
-            opacity: 0.72,
+            opacity: 0.78,
             y: 0,
             letterSpacing: "0.22em",
             duration: 0.86,
@@ -171,6 +189,24 @@ export default function SpecialEpilogue() {
           "-=0.68"
         )
         .to(
+          ".special-aurora, .special-auroraTwo",
+          {
+            opacity: 1,
+            duration: 1.8,
+            stagger: 0.1,
+          },
+          "-=0.82"
+        )
+        .to(
+          ".special-particlesBack, .special-particlesMid, .special-particlesFront",
+          {
+            opacity: 1,
+            duration: 1.5,
+            stagger: 0.08,
+          },
+          "-=1.1"
+        )
+        .to(
           visualRef.current,
           {
             opacity: 1,
@@ -185,20 +221,31 @@ export default function SpecialEpilogue() {
             opacity: 1,
             scale: 1,
             filter: "blur(0px)",
-            duration: 1.12,
+            duration: 1.16,
             ease: "power3.out",
           },
-          "-=0.66"
+          "-=0.68"
         )
         .to(
           ".special-visualHalo",
           {
-            opacity: 0.56,
+            opacity: 0.76,
             scale: 1,
             duration: 1.16,
             ease: "power2.out",
           },
-          "-=0.94"
+          "-=0.92"
+        )
+        .to(
+          ".special-visualRing",
+          {
+            opacity: 0.72,
+            scale: 1,
+            duration: 1.24,
+            stagger: 0.08,
+            ease: "power2.out",
+          },
+          "-=1.02"
         )
         .to(
           proseRef.current,
@@ -221,7 +268,7 @@ export default function SpecialEpilogue() {
         .to(
           ".special-signalLine",
           {
-            opacity: 0.66,
+            opacity: 0.72,
             x: 0,
             duration: 0.84,
             stagger: 0.08,
@@ -241,17 +288,17 @@ export default function SpecialEpilogue() {
       if (reducedMotion) return;
 
       gsap.to(".special-pulse", {
-        scale: 1.08,
-        opacity: 0.32,
-        duration: 5.4,
+        scale: 1.1,
+        opacity: 0.34,
+        duration: 5.8,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
       });
 
       gsap.to(imageRef.current, {
-        scale: 1.035,
-        duration: 12,
+        scale: 1.05,
+        duration: 15,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
@@ -259,7 +306,7 @@ export default function SpecialEpilogue() {
 
       gsap.to(".special-starDust", {
         opacity: 0.18,
-        duration: 3.2,
+        duration: 3.8,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
@@ -273,18 +320,114 @@ export default function SpecialEpilogue() {
       });
 
       gsap.to(".special-visualGlow", {
-        opacity: 0.34,
-        scale: 1.05,
-        duration: 4.8,
+        opacity: 0.44,
+        scale: 1.06,
+        duration: 5.2,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
       });
 
       gsap.to(".special-visualHalo", {
-        opacity: 0.4,
-        scale: 1.03,
-        duration: 6.6,
+        opacity: 0.52,
+        scale: 1.035,
+        duration: 6.8,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-visualRingOne", {
+        rotate: 10,
+        duration: 18,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-visualRingTwo", {
+        rotate: -12,
+        duration: 22,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-visualRingThree", {
+        rotate: 8,
+        scale: 1.02,
+        duration: 16,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-particlesBack", {
+        opacity: 0.44,
+        duration: 5.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-particlesMid", {
+        opacity: 0.58,
+        duration: 6.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-particlesFront", {
+        opacity: 0.72,
+        duration: 7.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-particlesBack", {
+        y: 18,
+        x: -10,
+        duration: 18,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-particlesMid", {
+        y: -14,
+        x: 10,
+        duration: 21,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-particlesFront", {
+        y: -20,
+        x: 14,
+        duration: 24,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-aurora", {
+        opacity: 0.44,
+        x: 18,
+        y: -10,
+        duration: 14,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".special-auroraTwo", {
+        opacity: 0.34,
+        x: -14,
+        y: 12,
+        duration: 17,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
@@ -308,6 +451,20 @@ export default function SpecialEpilogue() {
         x: mouseX * 0.28,
         y: mouseY * 0.24,
         duration: 2.2,
+        ease: "power3.out",
+      });
+
+      gsap.to(".special-particlesFront", {
+        x: mouseX * 0.36,
+        y: mouseY * 0.28,
+        duration: 2.6,
+        ease: "power3.out",
+      });
+
+      gsap.to(".special-particlesMid", {
+        x: mouseX * 0.2,
+        y: mouseY * 0.16,
+        duration: 2.8,
         ease: "power3.out",
       });
     };
@@ -368,7 +525,7 @@ export default function SpecialEpilogue() {
       <div className="special-bgImageWrap" ref={imageWrapRef} aria-hidden="true">
         <img
           ref={imageRef}
-          src="/images/special-epilogue2.png"
+          src="/images/lastnoah.png"
           alt=""
           className="special-image"
         />
@@ -381,6 +538,11 @@ export default function SpecialEpilogue() {
       <div className="special-pulse" aria-hidden="true" />
       <div className="special-scan" aria-hidden="true" />
       <div className="special-starDust" aria-hidden="true" />
+      <div className="special-aurora" aria-hidden="true" />
+      <div className="special-auroraTwo" aria-hidden="true" />
+      <div className="special-particles special-particlesBack" aria-hidden="true" />
+      <div className="special-particles special-particlesMid" aria-hidden="true" />
+      <div className="special-particles special-particlesFront" aria-hidden="true" />
 
       <section className="special-shell">
         <header className="special-hero" ref={heroRef}>
@@ -398,6 +560,10 @@ export default function SpecialEpilogue() {
           <div className="special-visualFrame">
             <div className="special-visualGlow" />
             <div className="special-visualHalo" />
+            <div className="special-visualRing special-visualRingOne" />
+            <div className="special-visualRing special-visualRingTwo" />
+            <div className="special-visualRing special-visualRingThree" />
+            <div className="special-visualBloom" />
             <div className="special-visualCore" />
           </div>
         </section>
