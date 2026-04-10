@@ -1,0 +1,490 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #06080c;
+}
+
+body {
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Noto Serif JP",
+    serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+body[data-chapter="chapter02"] {
+  background: #06080c;
+}
+
+.chapter02-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(128, 24, 32, 0.08), transparent 30%),
+    radial-gradient(circle at 78% 18%, rgba(156, 176, 246, 0.04), transparent 22%),
+    linear-gradient(180deg, #06080c 0%, #0b0f16 56%, #121824 100%);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.chapter02-bgImageWrap {
+  position: absolute;
+  inset: -2%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.chapter02-image {
+  width: 104%;
+  height: 104%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.14) brightness(0.42) contrast(1.06) saturate(0.84);
+  transform: scale(1.02);
+  will-change: transform;
+}
+
+.chapter02-imageOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 7, 11, 0.54) 0%,
+      rgba(8, 10, 14, 0.4) 16%,
+      rgba(10, 12, 18, 0.5) 40%,
+      rgba(8, 10, 14, 0.72) 100%
+    ),
+    radial-gradient(circle at 50% 24%, rgba(214, 90, 90, 0.12), transparent 22%),
+    radial-gradient(circle at 74% 64%, rgba(152, 176, 244, 0.08), transparent 24%);
+}
+
+.chapter02-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(168, 32, 40, 0.08), transparent 22%),
+    radial-gradient(circle at 76% 62%, rgba(108, 128, 170, 0.06), transparent 24%),
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.028), transparent 24%);
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.chapter02-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.018;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 3px 3px;
+  z-index: 2;
+}
+
+.chapter02-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 42%, transparent 28%, rgba(0, 0, 0, 0.32) 100%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0) 24%,
+      rgba(0, 0, 0, 0.18) 100%
+    );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.chapter02-pulse {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: min(34vw, 440px);
+  height: min(34vw, 440px);
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background:
+    radial-gradient(
+      circle,
+      rgba(214, 88, 88, 0.1) 0%,
+      rgba(214, 88, 88, 0.024) 34%,
+      transparent 72%
+    );
+  filter: blur(42px);
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.chapter02-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.07;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 44%,
+    rgba(255, 255, 255, 0.028) 49%,
+    rgba(255, 108, 108, 0.05) 50%,
+    rgba(255, 255, 255, 0.022) 51%,
+    transparent 56%,
+    transparent 100%
+  );
+  animation: chapter02Scan 6.4s ease-in-out infinite;
+}
+
+.chapter02-signGlow {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(52vw, 660px);
+  height: 132px;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 96, 96, 0.11) 0%,
+      rgba(255, 96, 96, 0.032) 34%,
+      transparent 72%
+    );
+  filter: blur(24px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes chapter02Scan {
+  0%,
+  100% {
+    transform: translateY(-8%);
+    opacity: 0.04;
+  }
+  50% {
+    transform: translateY(9%);
+    opacity: 0.1;
+  }
+}
+
+.chapter02-shell {
+  position: relative;
+  z-index: 4;
+  width: min(100%, 840px);
+  margin: 0 auto;
+  padding: 124px 24px 96px;
+}
+
+.chapter02-hero {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.chapter02-kicker {
+  margin: 0 0 16px;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  color: rgba(255, 255, 255, 0.44);
+}
+
+.chapter02-title {
+  margin: 0 0 22px;
+  font-size: clamp(38px, 6vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -0.085em;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.98);
+  text-shadow:
+    0 0 12px rgba(255, 96, 96, 0.04),
+    0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.chapter02-lead {
+  margin: 0 auto;
+  max-width: 640px;
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.76;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.chapter02-prose {
+  position: relative;
+}
+
+.chapter02-readBlock {
+  overflow: hidden;
+}
+
+.chapter02-readInner {
+  display: block;
+  will-change: opacity, transform, filter, clip-path;
+}
+
+.chapter02-dialogue .chapter02-readInner {
+  display: block;
+}
+
+.chapter02-paragraph {
+  margin: 0 0 34px;
+  font-size: clamp(15px, 1.08vw, 17px);
+  line-height: 2.16;
+  letter-spacing: 0.015em;
+  color: rgba(255, 255, 255, 0.74);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.14);
+}
+
+.chapter02-paragraph.chapter02-readBlock {
+  position: relative;
+}
+
+.chapter02-paragraph.chapter02-readBlock::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.032) 0%,
+    rgba(255, 255, 255, 0.012) 42%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0.12;
+  mix-blend-mode: screen;
+}
+
+.chapter02-emphasis {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.chapter02-dialogue {
+  margin: 30px 0 34px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.chapter02-dialogue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 186, 186, 0.16) 0%,
+    rgba(194, 208, 255, 0.14) 100%
+  );
+  opacity: 0.74;
+}
+
+.chapter02-lineText {
+  margin: 0 0 12px;
+  font-size: clamp(15px, 1.06vw, 17px);
+  line-height: 2.02;
+}
+
+.chapter02-lineText:last-child {
+  margin-bottom: 0;
+}
+
+.chapter02-lineTextArata {
+  color: rgba(255, 238, 238, 0.86);
+}
+
+.chapter02-lineTextMina {
+  color: rgba(230, 236, 255, 0.8);
+}
+
+.chapter02-speaker {
+  display: inline-block;
+  margin-right: 12px;
+  color: rgba(255, 202, 202, 0.82);
+  letter-spacing: 0.04em;
+}
+
+.chapter02-traces {
+  margin: 54px 0 54px;
+  padding: 22px 0 6px;
+  position: relative;
+}
+
+.chapter02-traces-line {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 18px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.14) 18%,
+    rgba(255, 116, 116, 0.13) 48%,
+    rgba(174, 194, 255, 0.05) 74%,
+    transparent 100%
+  );
+}
+
+.chapter02-traces-label {
+  margin: 0 0 18px;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.chapter02-traces-list {
+  display: grid;
+  gap: 10px;
+}
+
+.chapter02-traceLine {
+  margin: 0;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 142, 142, 0.4);
+  text-shadow: 0 0 8px rgba(255, 92, 92, 0.08);
+}
+
+.chapter02-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chapter02-navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.76);
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.chapter02-navButton:hover {
+  transform: translateY(-1px);
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.chapter02-navButtonNext {
+  color: rgba(255, 222, 222, 0.84);
+}
+
+@media (max-width: 767px) {
+  .chapter02-shell {
+    padding: 104px 16px 76px;
+  }
+
+  .chapter02-hero {
+    margin-bottom: 52px;
+  }
+
+  .chapter02-title {
+    font-size: clamp(32px, 11vw, 56px);
+    line-height: 1.08;
+  }
+
+  .chapter02-lead {
+    font-size: 18px;
+    line-height: 1.74;
+  }
+
+  .chapter02-paragraph {
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 2.08;
+  }
+
+  .chapter02-dialogue {
+    margin: 24px 0 28px;
+    padding-left: 14px;
+  }
+
+  .chapter02-lineText {
+    font-size: 14px;
+    line-height: 1.96;
+  }
+
+  .chapter02-traces {
+    margin: 42px 0 42px;
+    padding-top: 18px;
+  }
+
+  .chapter02-traceLine {
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .chapter02-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 48px;
+  }
+
+  .chapter02-navButton {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter02-scan {
+    animation: none;
+  }
+
+  .chapter02-navButton {
+    transition: none;
+  }
+}

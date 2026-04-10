@@ -1,0 +1,502 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #101317;
+}
+
+body {
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Noto Serif JP",
+    serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+body[data-chapter="chapter08"] {
+  background: #101317;
+}
+
+.chapter08-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(226, 230, 238, 0.08), transparent 30%),
+    radial-gradient(circle at 76% 18%, rgba(248, 242, 230, 0.04), transparent 24%),
+    linear-gradient(180deg, #101317 0%, #171b22 54%, #1c2028 100%);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.chapter08-bgImageWrap {
+  position: absolute;
+  inset: -2%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.chapter08-image {
+  width: 104%;
+  height: 104%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.06) brightness(0.48) contrast(1.02) saturate(0.72);
+  transform: scale(1.02);
+  will-change: transform;
+}
+
+.chapter08-imageOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12, 14, 18, 0.4) 0%,
+      rgba(16, 18, 24, 0.24) 18%,
+      rgba(18, 20, 26, 0.34) 42%,
+      rgba(12, 14, 18, 0.62) 100%
+    ),
+    radial-gradient(circle at 50% 22%, rgba(252, 248, 238, 0.1), transparent 22%);
+}
+
+.chapter08-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(232, 236, 244, 0.06), transparent 24%),
+    radial-gradient(circle at 76% 62%, rgba(194, 202, 220, 0.05), transparent 26%),
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.024), transparent 24%);
+  filter: blur(22px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.chapter08-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.014;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 3px 3px;
+  z-index: 2;
+}
+
+.chapter08-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, transparent 28%, rgba(0, 0, 0, 0.3) 100%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.06) 0%,
+      rgba(0, 0, 0, 0) 24%,
+      rgba(0, 0, 0, 0.16) 100%
+    );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.chapter08-pulse {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: min(38vw, 520px);
+  height: min(38vw, 520px);
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background:
+    radial-gradient(
+      circle,
+      rgba(240, 242, 248, 0.1) 0%,
+      rgba(240, 242, 248, 0.022) 34%,
+      transparent 72%
+    );
+  filter: blur(42px);
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.chapter08-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.08;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 44%,
+    rgba(255, 255, 255, 0.04) 49%,
+    rgba(220, 228, 248, 0.06) 50%,
+    rgba(255, 255, 255, 0.018) 51%,
+    transparent 56%,
+    transparent 100%
+  );
+  animation: chapter08Scan 6.2s ease-in-out infinite;
+}
+
+.chapter08-dust {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image:
+    radial-gradient(circle at 22% 24%, rgba(255,255,255,0.62) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 68% 30%, rgba(236,242,255,0.58) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 54% 68%, rgba(246,246,246,0.52) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 80% 78%, rgba(220,230,255,0.48) 0 1px, transparent 1.6px);
+  background-size: 320px 320px, 420px 420px, 360px 360px, 280px 280px;
+}
+
+@keyframes chapter08Scan {
+  0%,
+  100% {
+    transform: translateY(-8%);
+    opacity: 0.03;
+  }
+  50% {
+    transform: translateY(10%);
+    opacity: 0.08;
+  }
+}
+
+.chapter08-shell {
+  position: relative;
+  z-index: 4;
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 120px 24px 96px;
+}
+
+.chapter08-hero {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.chapter08-kicker {
+  margin: 0 0 16px;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  color: rgba(255, 255, 255, 0.44);
+}
+
+.chapter08-title {
+  margin: 0 0 20px;
+  font-size: clamp(40px, 6vw, 82px);
+  line-height: 1.02;
+  letter-spacing: -0.085em;
+  font-weight: 500;
+  color: rgba(248, 248, 244, 0.98);
+  text-shadow:
+    0 0 14px rgba(244, 244, 236, 0.05),
+    0 14px 36px rgba(0, 0, 0, 0.18);
+}
+
+.chapter08-lead {
+  margin: 0 auto;
+  max-width: 660px;
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.76;
+  letter-spacing: -0.03em;
+  color: rgba(238, 240, 244, 0.86);
+}
+
+.chapter08-prose {
+  position: relative;
+}
+
+.chapter08-readBlock {
+  overflow: hidden;
+}
+
+.chapter08-readInner {
+  display: block;
+  will-change: opacity, transform, filter, clip-path;
+}
+
+.chapter08-dialogue .chapter08-readInner {
+  display: block;
+}
+
+.chapter08-paragraph {
+  margin: 0 0 34px;
+  font-size: clamp(15px, 1.08vw, 17px);
+  line-height: 2.16;
+  letter-spacing: 0.015em;
+  color: rgba(234, 238, 244, 0.78);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.12);
+}
+
+.chapter08-paragraph.chapter08-readBlock {
+  position: relative;
+}
+
+.chapter08-paragraph.chapter08-readBlock::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(244, 244, 240, 0.035) 0%,
+    rgba(255, 255, 255, 0.012) 42%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0.12;
+  mix-blend-mode: screen;
+}
+
+.chapter08-emphasis {
+  color: rgba(246, 248, 250, 0.9);
+}
+
+.chapter08-dialogue {
+  margin: 30px 0 34px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(212, 220, 236, 0.12);
+  position: relative;
+}
+
+.chapter08-dialogue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(204, 214, 236, 0.14) 100%
+  );
+  opacity: 0.72;
+}
+
+.chapter08-lineText {
+  margin: 0 0 12px;
+  font-size: clamp(15px, 1.06vw, 17px);
+  line-height: 2.02;
+}
+
+.chapter08-lineText:last-child {
+  margin-bottom: 0;
+}
+
+.chapter08-lineTextArata {
+  color: rgba(246, 244, 240, 0.88);
+}
+
+.chapter08-lineTextMina {
+  color: rgba(234, 238, 244, 0.84);
+}
+
+.chapter08-speaker {
+  display: inline-block;
+  margin-right: 12px;
+  color: rgba(246, 244, 240, 0.88);
+  letter-spacing: 0.04em;
+}
+
+.chapter08-memory {
+  margin: 48px 0 48px;
+  padding: 0 4px;
+}
+
+.chapter08-memoryLineTop {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 16px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 18%,
+    rgba(214, 220, 236, 0.12) 48%,
+    transparent 100%
+  );
+}
+
+.chapter08-memoryLabel {
+  margin: 0 0 14px;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: rgba(236, 240, 246, 0.42);
+}
+
+.chapter08-memoryList {
+  display: grid;
+  gap: 10px;
+}
+
+.chapter08-memoryLine {
+  margin: 0;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(220, 226, 236, 0.46);
+  text-shadow: 0 0 8px rgba(220, 224, 236, 0.06);
+}
+
+.chapter08-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chapter08-navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(238, 242, 246, 0.78);
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.chapter08-navButton:hover {
+  transform: translateY(-1px);
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.chapter08-navButtonNext {
+  color: rgba(226, 232, 240, 0.86);
+}
+
+@media (max-width: 767px) {
+  .chapter08-shell {
+    padding: 104px 16px 76px;
+  }
+
+  .chapter08-hero {
+    margin-bottom: 38px;
+  }
+
+  .chapter08-title {
+    font-size: clamp(34px, 11vw, 58px);
+    line-height: 1.08;
+  }
+
+  .chapter08-lead {
+    font-size: 18px;
+    line-height: 1.74;
+  }
+
+  .chapter08-paragraph {
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 2.08;
+  }
+
+  .chapter08-dialogue {
+    margin: 24px 0 28px;
+    padding-left: 14px;
+  }
+
+  .chapter08-lineText {
+    font-size: 14px;
+    line-height: 1.96;
+  }
+
+  .chapter08-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 48px;
+  }
+
+  .chapter08-navButton {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+  
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter08-scan {
+    animation: none;
+  }
+
+  .chapter08-navButton {
+    transition: none;
+  }
+}
+@media (max-width: 767px) {
+  .chapter08-bgImageWrap {
+    inset: 0;
+  }
+
+  .chapter08-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1);
+  }
+
+  .chapter08-imageOverlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(12, 14, 18, 0.42) 0%,
+        rgba(16, 18, 24, 0.24) 18%,
+        rgba(18, 20, 26, 0.34) 42%,
+        rgba(12, 14, 18, 0.64) 100%
+      ),
+      radial-gradient(circle at 50% 20%, rgba(252, 248, 238, 0.08), transparent 20%);
+  }
+}
+.chapter08-bgImageWrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

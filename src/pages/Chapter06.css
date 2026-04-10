@@ -1,0 +1,446 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #09080a;
+}
+
+body {
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Noto Serif JP",
+    serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+body[data-chapter="chapter06"] {
+  background: #09080a;
+}
+
+.chapter06-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(160, 30, 40, 0.12), transparent 30%),
+    radial-gradient(circle at 76% 18%, rgba(124, 18, 24, 0.08), transparent 24%),
+    linear-gradient(180deg, #09080a 0%, #100d10 54%, #171114 100%);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.chapter06-bgImageWrap {
+  position: absolute;
+  inset: -2%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.chapter06-image {
+  width: 104%;
+  height: 104%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.1) brightness(0.44) contrast(1.08) saturate(0.9);
+  transform: scale(1.02);
+  will-change: transform;
+}
+
+.chapter06-imageOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 8, 10, 0.52) 0%,
+      rgba(12, 10, 12, 0.38) 18%,
+      rgba(12, 10, 12, 0.48) 42%,
+      rgba(8, 8, 10, 0.74) 100%
+    ),
+    radial-gradient(circle at 50% 22%, rgba(255, 80, 80, 0.16), transparent 20%);
+}
+
+.chapter06-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(194, 34, 44, 0.12), transparent 22%),
+    radial-gradient(circle at 76% 62%, rgba(130, 30, 34, 0.1), transparent 24%),
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.024), transparent 24%);
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.chapter06-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.026;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 3px 3px;
+  z-index: 2;
+}
+
+.chapter06-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, transparent 26%, rgba(0, 0, 0, 0.34) 100%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0) 24%,
+      rgba(0, 0, 0, 0.22) 100%
+    );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.chapter06-pulse {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  width: min(42vw, 600px);
+  height: min(42vw, 600px);
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(255, 76, 76, 0.16) 0%, rgba(255, 76, 76, 0.04) 34%, transparent 72%);
+  filter: blur(48px);
+  opacity: 0.26;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.chapter06-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.11;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 44%,
+    rgba(255, 255, 255, 0.04) 49%,
+    rgba(255, 72, 72, 0.09) 50%,
+    rgba(255, 255, 255, 0.02) 51%,
+    transparent 56%,
+    transparent 100%
+  );
+  animation: chapter06Scan 4.6s ease-in-out infinite;
+}
+
+@keyframes chapter06Scan {
+  0%, 100% {
+    transform: translateY(-8%);
+    opacity: 0.05;
+  }
+  50% {
+    transform: translateY(10%);
+    opacity: 0.18;
+  }
+}
+
+.chapter06-shell {
+  position: relative;
+  z-index: 4;
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 120px 24px 96px;
+}
+
+.chapter06-hero {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.chapter06-kicker {
+  margin: 0 0 16px;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.chapter06-title {
+  margin: 0 0 20px;
+  font-size: clamp(40px, 6vw, 82px);
+  line-height: 1.03;
+  letter-spacing: -0.085em;
+  font-weight: 500;
+  color: rgba(255, 244, 244, 0.98);
+  text-shadow:
+    0 0 20px rgba(255, 72, 72, 0.1),
+    0 14px 40px rgba(0, 0, 0, 0.24);
+}
+
+.chapter06-lead {
+  margin: 0 auto;
+  max-width: 660px;
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.76;
+  letter-spacing: -0.03em;
+  color: rgba(255, 232, 232, 0.88);
+}
+
+.chapter06-prose {
+  position: relative;
+}
+
+.chapter06-readBlock {
+  overflow: hidden;
+}
+
+.chapter06-readInner {
+  display: block;
+  will-change: opacity, transform, filter, clip-path;
+}
+
+.chapter06-dialogue .chapter06-readInner {
+  display: block;
+}
+
+.chapter06-paragraph {
+  margin: 0 0 34px;
+  font-size: clamp(15px, 1.08vw, 17px);
+  line-height: 2.18;
+  letter-spacing: 0.015em;
+  color: rgba(255, 232, 232, 0.8);
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.16);
+}
+
+.chapter06-paragraph.chapter06-readBlock {
+  position: relative;
+}
+
+.chapter06-paragraph.chapter06-readBlock::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 116, 116, 0.05) 0%,
+    rgba(255, 255, 255, 0.012) 42%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0.18;
+  mix-blend-mode: screen;
+}
+
+.chapter06-emphasis {
+  color: rgba(255, 242, 242, 0.92);
+}
+
+.chapter06-dialogue {
+  margin: 30px 0 34px;
+  padding-left: 22px;
+  border-left: 1px solid rgba(255, 110, 110, 0.16);
+  position: relative;
+}
+
+.chapter06-dialogue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 192, 192, 0.34) 0%,
+    rgba(255, 76, 76, 0.18) 100%
+  );
+  opacity: 0.82;
+}
+
+.chapter06-lineText {
+  margin: 0 0 12px;
+  font-size: clamp(15px, 1.06vw, 17px);
+  line-height: 2.04;
+}
+
+.chapter06-lineText:last-child {
+  margin-bottom: 0;
+}
+
+.chapter06-lineTextArata {
+  color: rgba(255, 240, 240, 0.92);
+}
+
+.chapter06-lineTextMina {
+  color: rgba(255, 224, 224, 0.84);
+}
+
+.chapter06-lineTextNoah {
+  color: rgba(255, 176, 176, 0.9);
+  text-shadow: 0 0 14px rgba(255, 78, 78, 0.18);
+}
+
+.chapter06-speaker {
+  display: inline-block;
+  margin-right: 12px;
+  color: rgba(255, 196, 196, 0.94);
+  letter-spacing: 0.04em;
+}
+
+.chapter06-doctrine {
+  margin: 48px 0 48px;
+  padding: 0 4px;
+}
+
+.chapter06-doctrineLineTop {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 16px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 18%,
+    rgba(255, 82, 82, 0.18) 48%,
+    transparent 100%
+  );
+}
+
+.chapter06-doctrineLabel {
+  margin: 0 0 14px;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: rgba(255, 226, 226, 0.46);
+}
+
+.chapter06-doctrineList {
+  display: grid;
+  gap: 10px;
+}
+
+.chapter06-doctrineLine {
+  margin: 0;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 130, 130, 0.54);
+  text-shadow: 0 0 12px rgba(255, 72, 72, 0.16);
+}
+
+.chapter06-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chapter06-navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 236, 236, 0.82);
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.chapter06-navButton:hover {
+  transform: translateY(-1px);
+  color: rgba(255, 255, 255, 0.98);
+}
+
+.chapter06-navButtonNext {
+  color: rgba(255, 194, 194, 0.92);
+}
+
+@media (max-width: 767px) {
+  .chapter06-shell {
+    padding: 104px 16px 76px;
+  }
+
+  .chapter06-hero {
+    margin-bottom: 38px;
+  }
+
+  .chapter06-title {
+    font-size: clamp(34px, 11vw, 58px);
+    line-height: 1.08;
+  }
+
+  .chapter06-lead {
+    font-size: 18px;
+    line-height: 1.74;
+  }
+
+  .chapter06-paragraph {
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 2.08;
+  }
+
+  .chapter06-dialogue {
+    margin: 24px 0 28px;
+    padding-left: 14px;
+  }
+
+  .chapter06-lineText {
+    font-size: 14px;
+    line-height: 1.96;
+  }
+
+  .chapter06-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 48px;
+  }
+
+  .chapter06-navButton {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+}

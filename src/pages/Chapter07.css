@@ -1,0 +1,482 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #0a0c11;
+}
+
+body {
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Noto Serif JP",
+    serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+body[data-chapter="chapter07"] {
+  background: #0a0c11;
+}
+
+.chapter07-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(198, 214, 255, 0.08), transparent 30%),
+    radial-gradient(circle at 76% 18%, rgba(220, 230, 255, 0.04), transparent 24%),
+    linear-gradient(180deg, #0a0c11 0%, #10141c 54%, #151922 100%);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.chapter07-bgImageWrap {
+  position: absolute;
+  inset: -2%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.chapter07-image {
+  width: 104%;
+  height: 104%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.08) brightness(0.44) contrast(1.02) saturate(0.74);
+  transform: scale(1.02);
+  will-change: transform;
+}
+
+.chapter07-imageOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 12, 18, 0.48) 0%,
+      rgba(12, 14, 20, 0.32) 18%,
+      rgba(12, 14, 20, 0.44) 42%,
+      rgba(10, 12, 18, 0.72) 100%
+    ),
+    radial-gradient(circle at 50% 22%, rgba(244, 248, 255, 0.14), transparent 20%),
+    radial-gradient(circle at 50% 48%, rgba(255, 132, 132, 0.05), transparent 22%);
+}
+
+.chapter07-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(204, 218, 255, 0.08), transparent 24%),
+    radial-gradient(circle at 76% 62%, rgba(166, 184, 236, 0.06), transparent 26%),
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.024), transparent 24%);
+  filter: blur(22px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.chapter07-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.016;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 3px 3px;
+  z-index: 2;
+}
+
+.chapter07-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 40%, transparent 28%, rgba(0, 0, 0, 0.32) 100%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0) 24%,
+      rgba(0, 0, 0, 0.18) 100%
+    );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.chapter07-pulse {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: min(40vw, 520px);
+  height: min(40vw, 520px);
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background:
+    radial-gradient(
+      circle,
+      rgba(232, 240, 255, 0.11) 0%,
+      rgba(232, 240, 255, 0.024) 34%,
+      transparent 72%
+    );
+  filter: blur(44px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.chapter07-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.08;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 44%,
+    rgba(255, 255, 255, 0.04) 49%,
+    rgba(214, 228, 255, 0.06) 50%,
+    rgba(255, 255, 255, 0.018) 51%,
+    transparent 56%,
+    transparent 100%
+  );
+  animation: chapter07Scan 5.8s ease-in-out infinite;
+}
+
+.chapter07-whiteDust {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.09;
+  background-image:
+    radial-gradient(circle at 22% 24%, rgba(255,255,255,0.72) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 68% 30%, rgba(236,242,255,0.68) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 54% 68%, rgba(255,246,246,0.62) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 80% 78%, rgba(220,230,255,0.58) 0 1px, transparent 1.6px);
+  background-size: 320px 320px, 420px 420px, 360px 360px, 280px 280px;
+}
+
+@keyframes chapter07Scan {
+  0%,
+  100% {
+    transform: translateY(-8%);
+    opacity: 0.04;
+  }
+  50% {
+    transform: translateY(9%);
+    opacity: 0.1;
+  }
+}
+
+.chapter07-shell {
+  position: relative;
+  z-index: 4;
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 120px 24px 96px;
+}
+
+.chapter07-hero {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.chapter07-kicker {
+  margin: 0 0 16px;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  color: rgba(255, 255, 255, 0.44);
+}
+
+.chapter07-title {
+  margin: 0 0 20px;
+  font-size: clamp(40px, 6vw, 82px);
+  line-height: 1.03;
+  letter-spacing: -0.085em;
+  font-weight: 500;
+  color: rgba(248, 250, 255, 0.98);
+  text-shadow:
+    0 0 16px rgba(228, 238, 255, 0.08),
+    0 14px 36px rgba(0, 0, 0, 0.22);
+}
+
+.chapter07-lead {
+  margin: 0 auto;
+  max-width: 660px;
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.76;
+  letter-spacing: -0.03em;
+  color: rgba(238, 244, 255, 0.88);
+}
+
+.chapter07-prose {
+  position: relative;
+}
+
+.chapter07-readBlock {
+  overflow: hidden;
+}
+
+.chapter07-readInner {
+  display: block;
+  will-change: opacity, transform, filter, clip-path;
+}
+
+.chapter07-dialogue .chapter07-readInner {
+  display: block;
+}
+
+.chapter07-paragraph {
+  margin: 0 0 34px;
+  font-size: clamp(15px, 1.08vw, 17px);
+  line-height: 2.16;
+  letter-spacing: 0.015em;
+  color: rgba(236, 242, 248, 0.78);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.14);
+}
+
+.chapter07-paragraph.chapter07-readBlock {
+  position: relative;
+}
+
+.chapter07-paragraph.chapter07-readBlock::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(236, 242, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.012) 42%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0.14;
+  mix-blend-mode: screen;
+}
+
+.chapter07-emphasis {
+  color: rgba(248, 250, 255, 0.92);
+}
+
+.chapter07-dialogue {
+  margin: 30px 0 34px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(198, 212, 255, 0.12);
+  position: relative;
+}
+
+.chapter07-dialogue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.24) 0%,
+    rgba(186, 204, 255, 0.14) 100%
+  );
+  opacity: 0.8;
+}
+
+.chapter07-lineText {
+  margin: 0 0 12px;
+  font-size: clamp(15px, 1.06vw, 17px);
+  line-height: 2.02;
+}
+
+.chapter07-lineText:last-child {
+  margin-bottom: 0;
+}
+
+.chapter07-lineTextArata {
+  color: rgba(248, 244, 244, 0.9);
+}
+
+.chapter07-lineTextMina {
+  color: rgba(234, 240, 250, 0.84);
+}
+
+.chapter07-lineTextNoah {
+  color: rgba(240, 244, 255, 0.88);
+  text-shadow: 0 0 12px rgba(220, 232, 255, 0.12);
+}
+
+.chapter07-speaker {
+  display: inline-block;
+  margin-right: 12px;
+  color: rgba(244, 246, 255, 0.9);
+  letter-spacing: 0.04em;
+}
+
+.chapter07-miracle {
+  margin: 48px 0 48px;
+  padding: 0 4px;
+}
+
+.chapter07-miracleLineTop {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 16px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 18%,
+    rgba(206, 220, 255, 0.14) 48%,
+    transparent 100%
+  );
+}
+
+.chapter07-miracleLabel {
+  margin: 0 0 14px;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: rgba(238, 244, 255, 0.44);
+}
+
+.chapter07-miracleList {
+  display: grid;
+  gap: 10px;
+}
+
+.chapter07-miracleLine {
+  margin: 0;
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(222, 234, 255, 0.48);
+  text-shadow: 0 0 10px rgba(214, 228, 255, 0.1);
+}
+
+.chapter07-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chapter07-navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(238, 244, 255, 0.78);
+  font-family:
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.chapter07-navButton:hover {
+  transform: translateY(-1px);
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.chapter07-navButtonNext {
+  color: rgba(218, 230, 255, 0.88);
+}
+
+@media (max-width: 767px) {
+  .chapter07-shell {
+    padding: 104px 16px 76px;
+  }
+
+  .chapter07-hero {
+    margin-bottom: 38px;
+  }
+
+  .chapter07-title {
+    font-size: clamp(34px, 11vw, 58px);
+    line-height: 1.08;
+  }
+
+  .chapter07-lead {
+    font-size: 18px;
+    line-height: 1.74;
+  }
+
+  .chapter07-paragraph {
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 2.08;
+  }
+
+  .chapter07-dialogue {
+    margin: 24px 0 28px;
+    padding-left: 14px;
+  }
+
+  .chapter07-lineText {
+    font-size: 14px;
+    line-height: 1.96;
+  }
+
+  .chapter07-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 48px;
+  }
+
+  .chapter07-navButton {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter07-scan {
+    animation: none;
+  }
+
+  .chapter07-navButton {
+    transition: none;
+  }
+}
+.chapter07-bgImageWrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
